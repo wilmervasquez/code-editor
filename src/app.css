@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  .dark:root{
+    color: white;
+  }
   svg,img{
     display: block;
   }
@@ -11,9 +14,7 @@
     background: none;
   }
   
-  .dark:root{
-    color: white;
-  }
+ 
  
 }
 
@@ -24,4 +25,11 @@
   .scrollbar-none::-webkit-scrollbar{
     display: none;
   }
+  .grid-col-1{
+    grid-template-columns: 1fr;
+  }
+}
+
+@layer monaco-editor{
+
 }

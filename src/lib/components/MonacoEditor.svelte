@@ -9,10 +9,12 @@
 		editor = monaco.editor.create(node, {
 			language,
 			value,
+			padding:{top:14},
 			fontSize: 14,
 			fontFamily: 'Cascadia Code',
-			theme: 'vs-dark',
+			// theme: 'vs-dark',
 			tabSize: 2,
+			minimap:{enabled:false},
 			glyphMargin: false,
 			snippetSuggestions: 'inline',
 			automaticLayout:true
