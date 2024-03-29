@@ -14,7 +14,8 @@
 			theme: 'vs-dark',
 			tabSize: 2,
 			glyphMargin: false,
-			snippetSuggestions: 'inline'
+			snippetSuggestions: 'inline',
+			automaticLayout:true
 		});
 
 		editor.onDidChangeModelContent((e) => {
@@ -31,11 +32,13 @@
 	}
 </script>
 
-<div class="contain w-full h-full" use:embedEditor></div>
+<div class="contain w-full h-full grid overflow-hidden" use:embedEditor></div>
 
 <style>
 	.contain {
+		grid-template-columns: 1fr;
 		height: 100%;
 		width: 100%;
 	}
 </style>
+<!-- 52:10 -->

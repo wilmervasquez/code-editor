@@ -2,12 +2,14 @@
 	import { onMount } from "svelte";
 	import MonacoEditor from "$lib/components/MonacoEditor.svelte";
 	import { getStructHTML } from "$lib/util";
+	import { base } from "$app/paths";
+	import SvgUse from "$lib/components/SvgUse.svelte";
   
   let tabActiveIndex = 0;
   let editor: MonacoEditor;
   const tabs = [
-    {content:"<h1>Hello World</h1>",name:"HTML",icon:"html-5",lang:"html"},
-    {content:"*{margin:0}",name:"CSS",icon:"css-3", lang:"css"},
+    {content:"<h1>Hello World</h1>",name:"HTML",icon:"html5",lang:"html"},
+    {content:"*{margin:0}",name:"CSS",icon:"css3", lang:"css"},
     {content:"console.log()",name:"JavaScript",icon:"javascript", lang:"javascript"},
   ]
   onMount(()=>{
@@ -18,7 +20,6 @@
   
   let valueTextEditor = tabs[tabActiveIndex].content;
   $: tabs[tabActiveIndex].content = valueTextEditor;
-  $: console.log(tabs)
 </script>
 
 <div class="layout grid scrollbar-none">
@@ -31,13 +32,13 @@
           editor.setLang(tabs[tabActiveIndex].lang)
           
         }} class:active={tabActiveIndex == id}>
-          <img class="w-4 h-4 block" src="https://cdn.svgporn.com/logos/{icon}.svg" alt="">
+          <SvgUse size={12} src="{base}/icons/pkg.devicon.svg#{icon}"/>
           <p class="text-sm text-neutral-400">{name}</p>
         
         </button>
       {/each}
     </div>
-    <div class="grid py-3 bg">
+    <div class="grid pt-3 bg-[#1e1e1e]">
       <MonacoEditor bind:this={editor} bind:value={valueTextEditor} />
     </div>
   </div>
