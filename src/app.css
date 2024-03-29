@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  svg,img{
+    display: block;
+  }
+  input,select,option ,textarea{
+    outline: none;
+    background: none;
+  }
+  
+  .dark:root{
+    color: white;
+  }
+ 
+}
+
+@layer utilities{
+  .select-none{
+    -webkit-user-select: none;
+  }
+  .scrollbar-none::-webkit-scrollbar{
+    display: none;
+  }
+}
