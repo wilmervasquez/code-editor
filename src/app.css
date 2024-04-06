@@ -3,33 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  .dark:root{
-    color: white;
+  body {
+    background-color: rgb(24, 24, 24);
   }
-  svg,img{
-    display: block;
-  }
-  input,select,option ,textarea{
-    outline: none;
-    background: none;
-  }
-  
- 
- 
-}
-
-@layer utilities{
-  .select-none{
-    -webkit-user-select: none;
-  }
-  .scrollbar-none::-webkit-scrollbar{
-    display: none;
-  }
-  .grid-col-1{
-    grid-template-columns: 1fr;
-  }
-}
-
-@layer monaco-editor{
-
 }

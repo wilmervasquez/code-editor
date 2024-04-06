@@ -3,13 +3,13 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: vitePreprocess(),
 	kit: {
 		adapter: adapter(),
-        paths:{
-            base:"/code-editor"
-        }
-	}
+		paths:{
+			base: "/code-editor"
+		}
+	},
+	preprocess: vitePreprocess()
 };
 
 export default config;
