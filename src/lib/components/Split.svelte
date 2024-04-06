@@ -44,15 +44,15 @@
   </div>
   <div class="gutter-row gutter-row-1"></div>
   <!-- View -->
-  <div class="view-doc overflow-y-hidden">
+  <div class="overflow-y-hidden">
     <slot name="area-4"/>
   </div>
 </div>
 <style>
   .editors{
     height: 100vh;
-    grid-template-columns: 1fr 4px 1fr;
-    grid-template-rows: 1fr 4px 1fr;
+    grid-template-columns: 1fr 8px 1fr;
+    grid-template-rows: 1fr 8px 1fr;
   }
   .gutter-col,.gutter-row{
     background-repeat: no-repeat;

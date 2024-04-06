@@ -35,12 +35,28 @@
 </script>
 
 <div class="contain w-full h-full grid overflow-hidden" use:embedEditor></div>
-
+	
 <style>
 	.contain {
 		grid-template-columns: 1fr;
 		height: 100%;
+		position: relative;
 		width: 100%;
+		
+	}
+	.contain:before{
+		width: 40px;
+		content: "";
+		height: 40px;
+		background-size: contain;
+		position: absolute;
+		z-index: 7;
+		bottom: 5px;
+		background-repeat: no-repeat;
+		background-position: center;
+		right: 20px;
+		border-radius: 10px;
+		background-image: var(--image);
 	}
 </style>
 <!-- 52:10 -->
