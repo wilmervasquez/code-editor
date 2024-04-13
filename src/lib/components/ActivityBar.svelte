@@ -35,7 +35,7 @@
     <!-- activity-bar-provider -->
     <div class="grid top">
       {#each provider as {icon},idTab}
-        <button class="p-2 item" on:click={()=> openS(idTab)} class:active={idTab == tabOpenID && openSidebar }>
+        <button class="p-2 item relative" on:click={()=> openS(idTab)} class:active={idTab == tabOpenID && openSidebar }>
           <svg width="24" height="24" >
             <use href="{base}/icons/pkg.tabler.svg#{icon}"/>
           </svg>
@@ -53,7 +53,7 @@
       {/each}
     </div>
   </div>
-  <div class="sidebar-content overflow-y-scroll">
+  <div class="sidebar-content overflow-y-scroll scrollbar-none">
     <svelte:component this={view.view}/>
   </div>
 </div>
@@ -76,4 +76,13 @@
   .item:hover > svg, .item.active > svg {
     --color:white
   } 
+  .item.active::before{
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    left: 0;
+    top: 0;
+  }
 </style>

@@ -2,17 +2,22 @@
   import Editor from "$lib/components/Editor.svelte";
   import Split from "$lib/components/Split.svelte";
   import { getStructHTML } from "$lib/util";
+  import { getContext, setContext } from "svelte";
 
   
   let editorHTMLValue = localStorage.getItem("__html") ?? "<h1>Hello 🖐️</h1>";
   let editorCSSValue = localStorage.getItem("__css") ?? "* { margin: 0}";
   let editorJSValue = localStorage.getItem("__js") ?? "console.log('Hello 🖐️')";
 
+  setContext("editor",{setValue(v){editorHTMLValue=v}})
+  setContext("editor.for.css",{setValue(v){editorCSSValue=v}})
+  setContext("editor.for.js",{setValue(v){editorJSValue=v}})
   $:{
     localStorage.setItem("__html",editorHTMLValue)
     localStorage.setItem("__css",editorCSSValue) 
     localStorage.setItem("__js",editorJSValue)
   }
+
         
 </script>
 <div class="view-editor grid">

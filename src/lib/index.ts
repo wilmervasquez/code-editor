@@ -65,6 +65,7 @@ class MyCompletionItemProvider implements monaco.languages.CompletionItemProvide
 				label: `${word.word}: HTML Element`,
 				kind: monaco.languages.CompletionItemKind.Method,
 				insertText: `<${word.word}>\n\t$1\n</${word.word}>`,
+				insertTextRules:monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
 				range: range
 			},
 			{
