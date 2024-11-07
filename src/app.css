@@ -2,16 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     color-scheme: light dark;
   }
-  *{
+  * {
     outline: none;
+		background-color: transparent;
+		/* font-family: DM Sans; */
   }
   body {
     background-color: rgb(24, 24, 24);
   }
+	svg, button, img, input {
+		display: block;
+	}
 }
 @layer utilities {
 	.scrollbar-none::-webkit-scrollbar {

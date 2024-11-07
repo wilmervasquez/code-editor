@@ -27,7 +27,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"monaco-editor": "^0.47.0",
-		"split-grid": "^1.0.11"
+		"monaco-editor": "^0.52.0",
+		"split-grid": "^1.0.11",
+		"sqlite": "^5.1.1",
+		"sqlite3": "^5.1.7"
 	}
 }
