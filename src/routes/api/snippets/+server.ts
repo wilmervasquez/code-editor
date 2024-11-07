@@ -3,7 +3,7 @@ import { json } from "@sveltejs/kit";
 
 export async function GET() {
   let snippets
-  try { 
+  try {
     snippets = await new SnippetModel().all();
     return json(snippets);
   } catch (error) {
@@ -18,7 +18,7 @@ export async function POST({ request }) {
   const css = formData.get("css") as string;
   const js = formData.get("js") as string;
 
-  try { 
+  try {
     await new SnippetModel().insert({xml, css, js})
     return new Response(null, {status: 200});
   } catch (error) {
@@ -30,7 +30,7 @@ export async function POST({ request }) {
 export async function DELETE({ request }) {
   const formData = await request.formData();
   const id = Number(formData.get("id"));
-  try { 
+  try {
     await new SnippetModel().delete(id)
     return new Response(null, {status: 204});
   } catch (error) {

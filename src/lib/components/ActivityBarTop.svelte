@@ -19,7 +19,7 @@
   function openS(id:number) {
     if (openSidebar) {
       if (id === tabOpenID) {
-        
+
         openSidebar = false
       }
     } else {
@@ -27,7 +27,7 @@
     }
     tabOpenID = id;
   }
-  
+
   let statusUpload = 'none';
 
   async function uploadSnippet()  {
@@ -61,7 +61,7 @@
     <Tab/>
     <Tab/>
     <Tab/>
-    
+
   </div>
 
   <div class="flex items-center gap-3">
@@ -91,5 +91,5 @@
     grid-template-rows: auto 220px;
 
   }
- 
+
 </style>

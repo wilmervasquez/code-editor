@@ -1,0 +1,13 @@
+{
+  "paths": [
+    {
+      "name": "Tabler",
+      "dir": "static/icons/tabler",
+      "out.svg": "static/icons/pkg/tabler.svg",
+      "out.js": "src/lib/icons/Tabler.js",
+      "out.ts": "src/lib/icons/Tabler.ts",
+      "css.variable.fill": false,
+      "css.variable.stroke": true
+    }
+  ]
+}

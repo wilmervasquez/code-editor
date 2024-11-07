@@ -12,7 +12,7 @@
     if (!res.ok) return
     const {objects} = await res.json()
     pkgs = objects
-    
+
     const { items } = await res2.json()
     ghPkgs = items
     statusSeac = ''

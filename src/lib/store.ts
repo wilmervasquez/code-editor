@@ -8,7 +8,7 @@ unsubscribe(); // logs 'no more subscribers'
 
 const editorValue = (value: string) => {
   const { subscribe, set, update } = writable(value)
-    
+
   return {
     subscribe,
     update,

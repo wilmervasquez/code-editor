@@ -16,11 +16,11 @@ const HistorySnippet = {
     try {
       let json = localStorage.getItem(this.name) ?? "{}"
       let map = JSON.parse(json);
-      
+
       for (const key in map)  {
         this.data.set(key, map[key])
       };
-      
+
     } catch {
       this.save()
     };
@@ -77,11 +77,11 @@ const HistorySnippet = {
   updateCode: function(key:string, xml:string, css:string, js:string) {
     const snp = this.data.get(key);
     if (snp == null) return
-    
+
     snp.xml = xml ?? snp.xml
     snp.css = css ?? snp.css
     snp.js = js ?? snp.js
-    
+
     if ([snp.xml,snp.css,snp.js].join('') != [xml,css,js].join('')) {
       snp.updatedAt = new Date().toISOString()
     }

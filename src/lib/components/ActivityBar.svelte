@@ -27,7 +27,7 @@
     tabOpenID = id;
     view = provider[tabOpenID];
   }
-  
+
 </script>
 
 <div class="sidebar grid overflow-hidden h-screen bg-neutral-900" class:open={openSidebar}>

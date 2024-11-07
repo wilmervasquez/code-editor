@@ -42,16 +42,16 @@
     grid-template-columns: 1fr 8px 1fr;
     grid-template-rows: 1fr 8px 1fr;
   }
- 
+
   .gutter-col,.gutter-row{
     background-repeat: no-repeat;
     background-color: hsl(218, 14%, 14%);
   }
-  
+
   .gutter-col {
     grid-row: 1/-1;
-    cursor: col-resize;  
-    background-position: center; 
+    cursor: col-resize;
+    background-position: center;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==);
   }
   .gutter-col:hover,.gutter-row:hover{
@@ -72,5 +72,5 @@
   .gutter-row-1 {
     grid-row: 2;
   }
-  
+
 </style>

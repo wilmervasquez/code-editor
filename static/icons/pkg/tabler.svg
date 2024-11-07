@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg">
+	<symbol viewBox="0 0 24 24" id="brand-onedrive"><path fill="var(--fill)" stroke="var(--stroke)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.456 10.45a6.45 6.45 0 0 0-12-2.151a4.857 4.857 0 0 0-4.44 5.241a4.856 4.856 0 0 0 5.236 4.444h10.751a3.77 3.77 0 0 0 3.99-3.54a3.77 3.77 0 0 0-3.538-3.992z"/></symbol>
+	<symbol viewBox="0 0 24 24" id="file"><g fill="var(--fill)" stroke="var(--stroke)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2"/></g></symbol>
+	<symbol viewBox="0 0 24 24" id="history"><g fill="var(--fill)" stroke="var(--stroke)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 8v4l2 2"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></g></symbol>
+</svg>

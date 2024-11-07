@@ -16,7 +16,7 @@
   }
   .item:hover > svg, .item.active > svg {
     --color: violet
-  } 
+  }
   .item.active::before{
     content: "";
     position: absolute;

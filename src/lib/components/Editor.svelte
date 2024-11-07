@@ -26,7 +26,7 @@
 				enabled: false
 			}
 		});
-		
+
 		editor.onDidChangeModelContent((e) => {
 			dispatch('change', editor.getValue());
 		});
@@ -35,7 +35,7 @@
 	}
 
 	export function setValue(value:string){
-		if (ready) {			
+		if (ready) {
 			editor.setValue(value);
 		}
 	}
@@ -49,7 +49,7 @@
 </script>
 
 <div class="contain grid w-full h-full overflow-hidden" use:embedEditor></div>
-	
+
 <style>
 	.contain {
 		grid-template-columns: 1fr;

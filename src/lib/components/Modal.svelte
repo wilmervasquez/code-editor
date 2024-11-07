@@ -1,6 +1,6 @@
 <script lang="ts">
   import { codeTitle,  editorCSSValue,editorHTMLValue,  editorJSValue, historyIdSelect } from "$lib/store";
-  
+
   let isEditActive = false
   let defaultJSON = '{"1":{"html":"","css":"","javascript":""}}';
   let historyString = localStorage.getItem('history') ?? defaultJSON;
@@ -17,7 +17,7 @@
 
   class HistoryStorage {
     constructor() {
-      
+
     }
   }
 
@@ -31,7 +31,7 @@
     second: '2-digit',
     hour12: false // Cambia a false para formato 24 horas// 'numeric', '2-digit'
   }
-  
+
   let idSelect = history.keys().next().value;
 
   function add() {
@@ -52,7 +52,7 @@
   function setInside(id: string) {
     if (id === idSelect) return
     let historyItem = history.get(id);
-    
+
     codeTitle.set(historyItem.name)
     editorHTMLValue.setValue(String(historyItem.html))
     editorCSSValue.setValue(String(historyItem.css))
@@ -95,7 +95,7 @@
   }
 
   let visible = false;
-  
+
 </script>
 <svelte:window on:keyup={ (event)=>{
     event.preventDefault()

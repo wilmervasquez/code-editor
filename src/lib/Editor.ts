@@ -23,15 +23,15 @@ import * as monaco from 'monaco-editor';
 //     { token: 'enum', foreground: 'e5c07b' }, // Enums en amarillo
 //     { token: 'struct', foreground: 'e5c07b' }, // Structs en amarillo
 //     { token: 'event', foreground: '61afef' }, // Eventos en azul
-//     { token: 'operator', foreground: '56b6c2' }, 
+//     { token: 'operator', foreground: '56b6c2' },
 //     { token: 'comment', foreground: '7F848E' }, // Comentarios en color naranja y cursiva
 //     { token: 'keyword', foreground: 'D55FDE' }, // Palabras clave en verde
 //     { token: 'identifier', foreground: 'E5C07B' }, // Identificadores (variables, funciones) en rojo
 //     { token: 'string', foreground: '89CA78' }, // Cadenas de texto en amarillo
-//     { token: 'number', foreground: 'D19A66' }, 
+//     { token: 'number', foreground: 'D19A66' },
 //     { token:"tag", foreground: "EF596F" },
 //   ],
-  
+
 //   colors: {
 //     'editor.background': '#23272E',
 //     "activityBar.background": "#23272e",

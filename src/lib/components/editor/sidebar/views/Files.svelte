@@ -66,7 +66,7 @@ async function uploadSnippet()  {
     <button class="text-xs bg-green-600 border border-green-400 px-3 py-1 rounded-lg shadow-sm">DEPLOY</button>
     <button class="text-xs bg-orange-900 border border-orange-800 px-3 py-1 rounded-lg shadow-sm">RELOAD</button>
     <button class="text-xs bg-blue-900 border border-blue-800 px-3 py-1 rounded-lg shadow-sm">CREATE</button>
-    
+
   </div>
 </div>
 <style>

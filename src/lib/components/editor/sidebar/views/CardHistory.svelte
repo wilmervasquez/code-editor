@@ -27,7 +27,7 @@
     }
     editable = !editable
   }
- 
+
 </script>
 <button class="snp flex items-center justify-between hover:bg-neutral-900 gap-2 cursor-pointer px-2 py-1 pr-1" on:click={onSelect} class:active>
   <div class="flex items-center gap-2">
@@ -50,7 +50,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="hsl(0,100%,70%)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
   </div>
- 
+
 </button>
 <style>
   .active {
