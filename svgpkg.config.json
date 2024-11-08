@@ -1,11 +1,12 @@
 {
   "paths": [
     {
-      "name": "Tabler",
-      "dir": "static/icons/tabler",
-      "out.svg": "static/icons/pkg/tabler.svg",
-      "out.js": "src/lib/icons/Tabler.js",
-      "out.ts": "src/lib/icons/Tabler.ts",
+      "name": "TablerLinearIcons",
+      "base": "/icons/pkg",
+      "dir": "static/icons/tabler/linear",
+      "outSvg": "static/icons/pkg",
+      "outFile": "src/lib/icons",
+      "outFileType": "TS-ENUM",
       "css.variable.fill": false,
       "css.variable.stroke": true
     }

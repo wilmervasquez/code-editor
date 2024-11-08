@@ -13,7 +13,7 @@
   export let provider: Provider[] = [];
 
   let openSidebar: boolean = false;
-  let tabOpenID = 0;
+  let tabOpenID = $state(0);
   let view = provider[tabOpenID];
 
   function openS(id:number) {

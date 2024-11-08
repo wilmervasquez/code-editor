@@ -7,15 +7,15 @@
 </script>
 <button class="item p-2 relative" on:click class:active>
   <svg width="24" height="24" >
-    <use href="{base}/icons/pkg.tabler.svg?#{icon}"/>
+    <use href={icon}/>
   </svg>
 </button>
 <style>
   .item svg{
-    --color:gray;
+    --stroke:gray;
   }
   .item:hover > svg, .item.active > svg {
-    --color: violet
+    --stroke: violet
   }
   .item.active::before{
     content: "";
