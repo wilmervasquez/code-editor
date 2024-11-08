@@ -1,11 +1,18 @@
 <script lang="ts">
+  import { createBubbler } from 'svelte/legacy';
+
+  const bubble = createBubbler();
   import {base} from "$app/paths";
 
-  export let icon;
-  export let active;
+  interface Props {
+    icon: any;
+    active: any;
+  }
+
+  let { icon, active }: Props = $props();
 
 </script>
-<button class="item p-2 relative" on:click class:active>
+<button class="item p-2 relative" onclick={bubble('click')} class:active>
   <svg width="24" height="24" >
     <use href={icon}/>
   </svg>

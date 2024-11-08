@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import Editor from "$lib/components/Editor.svelte";
   import Split from "$lib/components/Split.svelte";
   import { getStructHTML } from "$lib/util";
@@ -7,13 +9,13 @@
   import "$lib/Editor.ts";
   import { HistorySnippet, type Snippet } from "$lib/components/editor/sidebar/views/SnippetHistory";
 
-  let editorHTML: Editor;
-  let editorCSS: Editor;
-  let editorJS: Editor;
+  let editorHTML: Editor = $state();
+  let editorCSS: Editor = $state();
+  let editorJS: Editor = $state();
   let selectKey: string = HistorySnippet.selectKey;
-  let doc: string
+  let doc: string = $state()
 
-  let xml: string, css: string , js: string
+  let xml: string = $state(), css: string = $state() , js: string = $state()
 
   const setValuesEditor = () => {
     selectKey = HistorySnippet.selectKey
@@ -46,34 +48,44 @@
     HistorySnippet.updateCode(selectKey, xml, css, js)
   }
 
-  $: xml, onChangeXML()
-  $: js, onChangeXML()
-  $: css, onChangeXML()
+  run(() => {
+    xml, onChangeXML()
+  });
+  run(() => {
+    js, onChangeXML()
+  });
+  run(() => {
+    css, onChangeXML()
+  });
 </script>
 <div class="view-editor grid h-full">
   <Split>
-    <Editor
+    <!-- @migration-task: migrate this slot by hand, `area-1` is an invalid identifier -->
+  <Editor
       slot="area-1"
       --image="url(https://www.abusaid.me/_next/static/media/html.017306fd.svg)"
       language="html"
       bind:this={editorHTML}
       on:change={({detail})=> xml = detail }
     />
-    <Editor
+    <!-- @migration-task: migrate this slot by hand, `area-2` is an invalid identifier -->
+  <Editor
       slot="area-2"
       --image="url(https://www.abusaid.me/_next/static/media/javascript.b181c09e.svg)"
       language="javascript"
       bind:this={editorJS}
       on:change={({detail})=> js = detail }
     />
-    <Editor
+    <!-- @migration-task: migrate this slot by hand, `area-3` is an invalid identifier -->
+  <Editor
       slot="area-3"
       --image="url(https://www.abusaid.me/_next/static/media/css.18a757c4.svg)"
       language="css"
       bind:this={editorCSS}
       on:change={({detail})=> css = detail }
     />
-    <iframe slot="area-4" class="w-full h-full bg-white" src={doc} frameborder="0" title=""></iframe>
+    <!-- @migration-task: migrate this slot by hand, `area-4` is an invalid identifier -->
+  <iframe slot="area-4" class="w-full h-full bg-white" src={doc} frameborder="0" title=""></iframe>
   </Split>
 </div>
 <style>

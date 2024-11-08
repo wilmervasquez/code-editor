@@ -4,9 +4,9 @@
 
 
 
-  let grupo = build()
+  let grupo = $state(build())
 
-  let selectKey: string | null = HistorySnippet.selectKey
+  let selectKey: string | null = $state(HistorySnippet.selectKey)
 
   function add() {
     HistorySnippet.add('','','')
@@ -39,7 +39,7 @@
   <div class="flex items-center sticky top-0 bg-neutral-900 justify-between px-1">
     <p class="text-neutral-500 text-xs font-bold pl-2">HISTORY</p>
     <div class="flex p-1 gap-2">
-      <button class="" on:click={add}>
+      <button class="" onclick={add}>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#cccccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m-7-7h14"/></svg>
       </button>
       <a href="py-1" class="" title="Preview">

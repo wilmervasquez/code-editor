@@ -1,6 +1,6 @@
 <script lang="ts">
-  let tables = [];
-  let table = [{}]
+  let tables = $state([]);
+  let table = $state([{}])
 
   async function getTables(){
     const response = await fetch('/api/db');
@@ -27,7 +27,7 @@
     </div>
     <ul>
       {#each tables as {name}}
-        <li class="flex items-center gap-2 px-2" on:click={()=> getTable(name)}>
+        <li class="flex items-center gap-2 px-2" onclick={()=> getTable(name)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#e27eab" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm0 5h18M10 3v18"/></svg>
           {name}
         </li>

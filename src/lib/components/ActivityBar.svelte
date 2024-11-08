@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: Cannot use `export let` in runes mode — use `$props()` instead -->
 <script lang="ts">
   import {base} from "$app/paths";
   import ButtonActivityBar from "./ButtonActivityBar.svelte";

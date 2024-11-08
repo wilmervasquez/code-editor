@@ -4,7 +4,11 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let language: string = "";
+	interface Props {
+		language?: string;
+	}
+
+	let { language = "" }: Props = $props();
 	let ready = false;
 
 	let editor:monaco.editor.IStandaloneCodeEditor;

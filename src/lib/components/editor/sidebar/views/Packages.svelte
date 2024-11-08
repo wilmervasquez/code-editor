@@ -1,7 +1,7 @@
 <script lang="ts">
-  let statusSeac = ''
-  let pkgs = []
-  let ghPkgs = []
+  let statusSeac = $state('')
+  let pkgs = $state([])
+  let ghPkgs = $state([])
 
   async function searchPkg(packageName: string) {
     if (packageName.length < 2) return
@@ -32,7 +32,7 @@
     {:else}
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="#0891b2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg>
     {/if}
-    <input type="text" placeholder="Buscar packages" class="text-sm" on:input={(e)=> searchPkg(e.target.value)}>
+    <input type="text" placeholder="Buscar packages" class="text-sm" oninput={(e)=> searchPkg(e.target.value)}>
   </div>
   <div class="grid">
     {#each pkgs as pkg}

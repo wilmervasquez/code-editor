@@ -10,10 +10,14 @@
   interface ProviderActions {
     icon: string
   }
-  export let provider: Provider[] = [];
-  export let providerActions: ProviderActions[] = [];
+  interface Props {
+    provider?: Provider[];
+    providerActions?: ProviderActions[];
+  }
 
-  let openSidebar: boolean = false;
+  let { provider = [], providerActions = [] }: Props = $props();
+
+  let openSidebar: boolean = $state(false);
   let tabOpenID = 0;
 
   function openS(id:number) {
@@ -28,7 +32,7 @@
     tabOpenID = id;
   }
 
-  let statusUpload = 'none';
+  let statusUpload = $state('none');
 
   async function uploadSnippet()  {
     const formData = new FormData()
@@ -68,7 +72,7 @@
     <a href="/snippets">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#0891b2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4H3v16h4M17 4h4v16h-4m-9-4h.01M12 16h.01M16 16h.01"/></svg>
     </a>
-    <button class="p-2" on:click={uploadSnippet}>
+    <button class="p-2" onclick={uploadSnippet}>
       {#if statusUpload == 'loading'}
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#0891b2" d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path fill="#0891b2" d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"><animateTransform attributeName="transform" dur="0.75s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></svg>
       {:else if statusUpload == 'error'}

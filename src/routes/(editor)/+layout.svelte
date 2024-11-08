@@ -9,6 +9,11 @@
   import Packages from "$lib/components/editor/sidebar/views/Packages.svelte";
   import TablerIcons from "$lib/icons/TablerLinearIcons";
   import type { ComponentType } from "svelte";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 
   HistorySnippet.load()
 
@@ -30,7 +35,7 @@
 <div class="layout-base grid">
   <ActivityBar {provider}/>
   <div class="grid">
-    <slot />
+    {@render children?.()}
   </div>
   <!-- <Modal/> -->
 </div>
