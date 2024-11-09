@@ -1,41 +1,41 @@
 <script lang="ts">
-
-  import "$lib/index"
-
-  import Storage from "$lib/components/editor/sidebar/views/Storage.svelte";
-  import ActivityBar from "$lib/components/ActivityBar.svelte";
-  import Files from "$lib/components/editor/sidebar/views/Files.svelte";
-  import { HistorySnippet } from "$lib/components/editor/sidebar/views/SnippetHistory";
-  import Packages from "$lib/components/editor/sidebar/views/Packages.svelte";
+  import "$lib/components/editor/Editor.ts"
+  import ActivityBar from "$lib/components/app/sidebar/ActivityBar.svelte";
+  import Files from "$lib/components/app/sidebar/views/Files/FilesView.svelte";
+  import { HistorySnippet } from "$lib/components/app/sidebar/views/History/SnippetHistory";
+  import Packages from "$lib/components/app/sidebar/views/Packages/PackagesView.svelte";
   import TablerIcons from "$lib/icons/TablerLinearIcons";
-  import type { ComponentType } from "svelte";
-  interface Props {
-    children?: import('svelte').Snippet;
-  }
-
-  let { children }: Props = $props();
+  import type { Component } from "svelte";
+  import type { Provider } from "$lib/components/app/sidebar/ActivityBar.d.ts";
+  import HistoryView from "$lib/components/app/sidebar/views/History/HistoryView.svelte";
+  import SettingsView from "$lib/components/app/sidebar/views/Settings/SettingsView.svelte";
+  import CloudView from "$lib/components/app/sidebar/views/Cloud/CloudView.svelte";
+  import ConsolaView from "$lib/components/app/sidebar/views/Consola/ConsolaView.svelte";
+  import AccountView from "$lib/components/app/sidebar/views/Account/AccountView.svelte";
+  import MenuView from "$lib/components/app/sidebar/views/Menu/MenuView.svelte";
 
   HistorySnippet.load()
 
-  function Provider(icon: string, view: ComponentType, position = 'TOP') {
+  function CProvider(icon: string, view: Component, position: 'TOP' | 'BOTTOM' = 'TOP'): Provider {
     return {icon, view, position}
   }
 
   const provider = [
-    Provider(TablerIcons.File, Storage),
-    Provider(TablerIcons.File, Files),
-    Provider(TablerIcons.History, Storage),
-    Provider(TablerIcons.BoxSeam, Packages),
-    Provider(TablerIcons.Terminal_2,Storage),
-    Provider(TablerIcons.BrandGithub, Storage, 'BOTTOM'),
-    Provider(TablerIcons.Settings, Storage, 'BOTTOM')
+    CProvider(TablerIcons.Menu_2, MenuView),
+    CProvider(TablerIcons.File, Files),
+    CProvider(TablerIcons.History, HistoryView),
+    CProvider(TablerIcons.BrandOnedrive, CloudView),
+    CProvider(TablerIcons.BoxSeam, Packages),
+    CProvider(TablerIcons.Terminal_2,ConsolaView),
+    CProvider(TablerIcons.User, AccountView, 'BOTTOM'),
+    CProvider(TablerIcons.Settings, SettingsView, 'BOTTOM')
   ]
 
 </script>
 <div class="layout-base grid">
   <ActivityBar {provider}/>
   <div class="grid">
-    {@render children?.()}
+    <slot/>
   </div>
   <!-- <Modal/> -->
 </div>

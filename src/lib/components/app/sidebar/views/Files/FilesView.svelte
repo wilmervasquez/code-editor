@@ -1,9 +1,12 @@
 <script lang="ts">
-  import { HistorySnippet } from "./SnippetHistory";
+  import TablerLinearIcons from "$lib/icons/TablerLinearIcons";
+  import type { Action } from "../../BarTop";
+  import BarTop from "../../BarTop.svelte";
+  import { HistorySnippet } from "../History/SnippetHistory";
 
   let statusUpload = $state('none');
 
-async function uploadSnippet()  {
+  async function uploadSnippet()  {
     const formData = new FormData()
     const snp = HistorySnippet.data.get(HistorySnippet.selectKey)
     if (snp == null) {
@@ -31,11 +34,16 @@ async function uploadSnippet()  {
       clearTimeout(i)
     }, 2000);
   }
+
+  const actions: Action[] = [{
+    icon: TablerLinearIcons.BrandGithub,
+    onclick() {
+
+    },
+  }]
 </script>
 <div class="flex flex-col gap-2">
-  <div class="flex">
-    <h2 class="text-xs p-1 bg-neutral-900">MANAGER</h2>
-  </div>
+  <BarTop title="FILES" {actions}/>
   <div class="flex flex-col text-sm">
     <a class="flex items-center gap-2 p-1" href="/snippets">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 3l8 4.5v9L12 21l-8-4.5v-9zm0 9l8-4.5M12 12v9m0-9L4 7.5"/></svg>
@@ -66,7 +74,6 @@ async function uploadSnippet()  {
     <button class="text-xs bg-green-600 border border-green-400 px-3 py-1 rounded-lg shadow-sm">DEPLOY</button>
     <button class="text-xs bg-orange-900 border border-orange-800 px-3 py-1 rounded-lg shadow-sm">RELOAD</button>
     <button class="text-xs bg-blue-900 border border-blue-800 px-3 py-1 rounded-lg shadow-sm">CREATE</button>
-
   </div>
 </div>
 <style>

@@ -24,7 +24,6 @@
       method: "DELETE",
       body: formData,
     });
-    console.log(response)
     getSnippets()
   }
 </script>

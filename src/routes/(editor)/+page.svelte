@@ -1,21 +1,18 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
-
-  import Editor from "$lib/components/Editor.svelte";
+  import Editor from "$lib/components/editor/Editor.svelte";
   import Split from "$lib/components/Split.svelte";
-  import { getStructHTML } from "$lib/util";
+  import { createObjectURLBlobStructHTML } from "$lib/util";
   import { onDestroy, onMount } from "svelte";
+  import { HistorySnippet } from "$lib/components/app/sidebar/views/History/SnippetHistory";
 
-  import "$lib/Editor.ts";
-  import { HistorySnippet, type Snippet } from "$lib/components/editor/sidebar/views/SnippetHistory";
+  let iframe: HTMLIFrameElement;
+  let editorHTML: Editor;
+  let editorCSS: Editor;
+  let editorJS: Editor;
 
-  let editorHTML: Editor = $state();
-  let editorCSS: Editor = $state();
-  let editorJS: Editor = $state();
-  let selectKey: string = HistorySnippet.selectKey;
-  let doc: string = $state()
-
-  let xml: string = $state(), css: string = $state() , js: string = $state()
+  let selectKey: string = $state(HistorySnippet.selectKey);
+  let doc: string = $state('');
+  let snippet = $state({xml: '', css: '', js: ''})
 
   const setValuesEditor = () => {
     selectKey = HistorySnippet.selectKey
@@ -23,7 +20,9 @@
     if (editorHTML && editorCSS && editorJS) {
       const snp = HistorySnippet.data.get(selectKey)
       if (snp == null) return
-      console.log(snp)
+
+      snippet = snp
+
       editorHTML.setValue(snp.xml)
       editorCSS.setValue(snp.css)
       editorJS.setValue(snp.js)
@@ -31,8 +30,10 @@
   }
 
   onMount(()=>{
+    console.log("2222222222222222222")
     setValuesEditor()
   })
+
 
   const subscribeKey = HistorySnippet.subscribe(setValuesEditor)
 
@@ -40,52 +41,41 @@
     HistorySnippet.subscriptions.delete(subscribeKey)
   })
 
-  function onChangeXML() {
-    var htmlContent = getStructHTML(xml,css,js);
-    var blob = new Blob([htmlContent], { type: 'text/html' });
-
-    doc = URL.createObjectURL(blob);
-    HistorySnippet.updateCode(selectKey, xml, css, js)
+  function onChangeEditor(snp: { xml: string, css: string, js: string}) {
+    snippet = snp;
+    onChangeXML()
   }
 
-  run(() => {
-    xml, onChangeXML()
-  });
-  run(() => {
-    js, onChangeXML()
-  });
-  run(() => {
-    css, onChangeXML()
-  });
+  function onChangeXML() {
+    doc = createObjectURLBlobStructHTML(snippet.xml, snippet.css, snippet.js);
+    HistorySnippet.updateCode(selectKey, snippet.xml, snippet.css, snippet.js)
+  }
+
 </script>
 <div class="view-editor grid h-full">
   <Split>
-    <!-- @migration-task: migrate this slot by hand, `area-1` is an invalid identifier -->
   <Editor
       slot="area-1"
       --image="url(https://www.abusaid.me/_next/static/media/html.017306fd.svg)"
       language="html"
       bind:this={editorHTML}
-      on:change={({detail})=> xml = detail }
+      on:change={({detail}) => onChangeEditor({...snippet, xml: detail}) }
     />
-    <!-- @migration-task: migrate this slot by hand, `area-2` is an invalid identifier -->
   <Editor
       slot="area-2"
       --image="url(https://www.abusaid.me/_next/static/media/javascript.b181c09e.svg)"
       language="javascript"
       bind:this={editorJS}
-      on:change={({detail})=> js = detail }
+      on:change={({detail})=> onChangeEditor({...snippet, js: detail}) }
     />
-    <!-- @migration-task: migrate this slot by hand, `area-3` is an invalid identifier -->
   <Editor
       slot="area-3"
       --image="url(https://www.abusaid.me/_next/static/media/css.18a757c4.svg)"
       language="css"
       bind:this={editorCSS}
-      on:change={({detail})=> css = detail }
+      on:change={({detail})=> onChangeEditor({...snippet, css: detail}) }
     />
-    <!-- @migration-task: migrate this slot by hand, `area-4` is an invalid identifier -->
-  <iframe slot="area-4" class="w-full h-full bg-white" src={doc} frameborder="0" title=""></iframe>
+  <iframe slot="area-4" bind:this={iframe} class="w-full h-full bg-white" src={doc} frameborder="0" title=""></iframe>
   </Split>
 </div>
 <style>

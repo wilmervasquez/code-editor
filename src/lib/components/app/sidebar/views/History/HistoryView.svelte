@@ -1,4 +1,7 @@
 <script lang="ts">
+  import TablerLinearIcons from "$lib/icons/TablerLinearIcons";
+  import type { Action } from "../../BarTop.d.ts";
+  import BarTop from "../../BarTop.svelte";
   import CardHistory from "./CardHistory.svelte";
   import { HistorySnippet, type Snippet } from "./SnippetHistory";
 
@@ -34,33 +37,41 @@
     return g
   }
 
+  function openPreview() {
+     HistorySnippet.openPreview()
+  }
+
+  const actions: Action[] = [{
+    icon: TablerLinearIcons.Plus,
+    onclick() {
+      add()
+    },
+  },{
+    icon: TablerLinearIcons.WindowMaximize,
+    onclick() {
+      openPreview()
+    },
+  }];
+
 </script>
 <div class="">
-  <div class="flex items-center sticky top-0 bg-neutral-900 justify-between px-1">
-    <p class="text-neutral-500 text-xs font-bold pl-2">HISTORY</p>
-    <div class="flex p-1 gap-2">
-      <button class="" onclick={add}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#cccccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m-7-7h14"/></svg>
-      </button>
-      <a href="py-1" class="" title="Preview">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#75b6d7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 17a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm1-5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><path d="M12 8h4v4m0-4l-5 5"/></g></svg>
-      </a>
-    </div>
-  </div>
+  <BarTop title="HISTORY" {actions}/>
   <div class="flex flex-col" >
     {#each grupo.entries() as [date, history]}
       <div class="flex p-1 gap-1">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10.5 21H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3m-4-7v4M8 3v4m-4 4h10"/><path d="M14 18a4 4 0 1 0 8 0a4 4 0 1 0-8 0"/><path d="M18 16.5V18l.5.5"/></g></svg>
         <span class="text-sm text-cyan-500 font-bold">{date}</span>
       </div>
-      {#each history as [key, { name }],i}
-        <CardHistory name={name} id={key} active={key == selectKey} on:remove={() => {
-          HistorySnippet.remove(key)
-          grupo = build()
-        }} on:select={()=> {
-          selectKey = key
-        }}/>
-      {/each}
+      <div class="p-1">
+        {#each history as [key, { name }] (key)}
+          <CardHistory name={name} id={key} active={key == selectKey} on:remove={() => {
+            HistorySnippet.remove(key)
+            grupo = build()
+          }} on:select={()=> {
+            selectKey = key
+          }}/>
+        {/each}
+      </div>
     {/each}
   </div>
 </div>

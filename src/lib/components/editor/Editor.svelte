@@ -19,7 +19,7 @@
 			padding: { top: 14 },
 			fontSize: 15,
 			fontFamily: 'Cascadia Code',
-			// theme: 'vs-dark',
+			theme: 'vs-dark',
 			tabSize: 2,
 			minimap:{ enabled: false},
 			glyphMargin: false,

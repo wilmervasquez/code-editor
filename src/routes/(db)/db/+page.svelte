@@ -6,14 +6,12 @@
     const response = await fetch('/api/db');
     const data = await response.json();
     tables = data
-    console.log(tables)
   };
 
   async function getTable(name: string){
     const response = await fetch(`/api/db/table?name=${name}`);
     const data = await response.json();
     table = data
-    console.log(data)
   };
 
   getTables()

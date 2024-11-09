@@ -1,4 +1,3 @@
-<!-- @migration-task Error while migrating Svelte code: `<button>` is invalid inside `<button>` -->
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import { HistorySnippet } from "./SnippetHistory";
@@ -32,7 +31,7 @@
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="snp flex items-center justify-between hover:bg-neutral-900 gap-2 cursor-pointer px-2 py-1 pr-1" onclick={onSelect} class:active>
+<div class="snp flex items-center justify-between hover:bg-green-900 gap-2 cursor-pointer px-2 py-1 pr-1 rounded-lg" onclick={onSelect} class:active>
   <div class="flex items-center gap-2">
     <div class="w-2 h-2 rounded-full {editable ? 'bg-orange-300':'bg-green-300'}"></div>
     {#if editable}
@@ -58,7 +57,7 @@
 </div>
 <style>
   .active {
-    background-color: rgb(27, 32, 51);
+    background-color: rgb(89, 10, 180);
   }
   .snp:hover .actions {
     opacity: 1;

@@ -1,21 +1,20 @@
-<!-- @migration-task Error while migrating Svelte code: Cannot use `export let` in runes mode — use `$props()` instead -->
 <script lang="ts">
   import {base} from "$app/paths";
-  import ButtonActivityBar from "./ButtonActivityBar.svelte";
+  import ButtonActivityBar from '$lib/components/app/sidebar/ButtonActivityBar.svelte';
+  import type { Component } from 'svelte';
+  import type { Provider } from "./ActivityBar";
 
-  interface Provider {
-    icon: string
-    view: any
+
+  interface Props {
+    provider: Provider[];
   }
-  interface ProviderActions {
-    icon: string
-  }
 
-  export let provider: Provider[] = [];
+  let { provider }: Props = $props();
 
-  let openSidebar: boolean = false;
-  let tabOpenID = $state(0);
-  let view = provider[tabOpenID];
+  let openSidebar: boolean = $state(false);
+  let tabOpenID: number = $state(0);
+
+  let View: Component = $derived(provider[tabOpenID].view);
 
   function openS(id:number) {
     if (openSidebar) {
@@ -26,7 +25,6 @@
       openSidebar = true
     }
     tabOpenID = id;
-    view = provider[tabOpenID];
   }
 
 </script>
@@ -38,7 +36,7 @@
     <div class="grid top">
       {#each provider as {icon, position},idTab}
         {#if position == 'TOP' }
-          <ButtonActivityBar icon={icon} active={idTab == tabOpenID && openSidebar} on:click={()=>openS(idTab)}/>
+          <ButtonActivityBar icon={icon} active={idTab == tabOpenID && openSidebar} onclick={()=>openS(idTab)}/>
         {/if}
       {/each}
     </div>
@@ -46,13 +44,13 @@
     <div class="bottom grid grid-col-1">
       {#each provider as {icon, position},idTab}
         {#if position == 'BOTTOM' }
-          <ButtonActivityBar icon={icon} active={idTab == tabOpenID && openSidebar} on:click={()=>openS(idTab)}/>
+          <ButtonActivityBar icon={icon} active={idTab == tabOpenID && openSidebar} onclick={()=>openS(idTab)}/>
         {/if}
       {/each}
     </div>
   </div>
   <div class="grid bg-neutral-800 overflow-y-scroll scrollbar-none">
-    <svelte:component this={view.view}/>
+    <View/>
   </div>
 </div>
 
@@ -62,7 +60,7 @@
     grid-template-columns: auto 0px;
   }
   .sidebar.open{
-    grid-template-columns: auto 220px;
+    grid-template-columns: auto 240px;
   }
   .top{
     grid-template-rows: 1fr;

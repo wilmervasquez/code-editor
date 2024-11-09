@@ -1,4 +1,3 @@
-<!-- @migration-task Error while migrating Svelte code: `<button>` is invalid inside `<button>` -->
 <script lang="ts">
   import { codeTitle,  editorCSSValue,editorHTMLValue,  editorJSValue, historyIdSelect } from "$lib/store";
 
@@ -68,7 +67,6 @@
   setInside(idSelect);
 
   function save() {
-    console.log(history)
     history.get(idSelect).html = $editorHTMLValue
     history.get(idSelect).css = $editorCSSValue
     history.get(idSelect).javascript = $editorJSValue
