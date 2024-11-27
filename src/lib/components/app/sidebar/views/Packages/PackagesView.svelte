@@ -28,7 +28,7 @@
   let ghPkgs: GitHubPackages[] = $state([])
 
   async function search(packageName: string) {
-    console.log(packageName)
+
     if (packageName.length < 3) return
 
     statusSearch = 'loading'
@@ -40,7 +40,7 @@
 
     const { items } = await res2.json() as { items: GitHubPackages[]};
     ghPkgs = items
-    console.log(items)
+
     statusSearch = ''
   }
 
@@ -56,7 +56,7 @@
   }]
 
   let clientWidth = $state(0)
-  
+
 </script>
 <div class="view grid">
   <BarTop title="PACKAGES" {actions}/>

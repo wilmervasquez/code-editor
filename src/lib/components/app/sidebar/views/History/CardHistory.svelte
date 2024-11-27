@@ -2,6 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import { HistorySnippet } from "./SnippetHistory";
   import { editorCSSValue, editorHTMLValue, editorJSValue } from "$lib/store";
+  import Menu from "./Menu.svelte";
 
   const dispatch = createEventDispatcher()
 
@@ -31,7 +32,7 @@
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="snp flex items-center justify-between hover:bg-green-900 gap-2 cursor-pointer px-2 py-1 pr-1 rounded-lg" onclick={onSelect} class:active>
+<div class="snp flex relative items-center justify-between hover:bg-neutral-900 gap-2 cursor-pointer border-neutral-700 px-2 py-1 pr-1 rounded-lg" onclick={onSelect} class:active>
   <div class="flex items-center gap-2">
     <div class="w-2 h-2 rounded-full {editable ? 'bg-orange-300':'bg-green-300'}"></div>
     {#if editable}
@@ -50,14 +51,17 @@
     </button>
     <!-- svelte-ignore a11y_consider_explicit_label -->
     <button class="" data-id={id} onclick={onDelete}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="hsl(0,100%,70%)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></svg>
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="hsl(0,100%,70%)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></svg> -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#999999" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg>
+      <Menu/>
     </button>
   </div>
 
 </div>
 <style>
   .active {
-    background-color: rgb(89, 10, 180);
+    background-color: rgba(0, 0, 0, 0.2);
+    @apply border
   }
   .snp:hover .actions {
     opacity: 1;

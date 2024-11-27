@@ -18,14 +18,14 @@
     --stroke:gray;
   }
   .item:hover > svg, .item.active > svg {
-    --stroke: violet
+    --stroke: rgb(130, 207, 238)
   }
   .item.active::before{
     content: "";
     position: absolute;
     width: 2px;
     height: 100%;
-    background-color: violet;
+    background-color: rgb(130, 207, 238);
     left: 0;
     top: 0;
   }

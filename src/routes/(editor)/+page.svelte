@@ -30,7 +30,6 @@
   }
 
   onMount(()=>{
-    console.log("2222222222222222222")
     setValuesEditor()
   })
 

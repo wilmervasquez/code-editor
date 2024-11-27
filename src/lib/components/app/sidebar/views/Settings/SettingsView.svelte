@@ -6,17 +6,17 @@
   const actions: Action[] = [{
     icon: TablerLinearIcons.BoxSeam,
     onclick() {
-      console.log(90)
+
     },
   },{
     icon: TablerLinearIcons.Settings,
     onclick() {
-      console.log(90)
+
     },
   },{
     icon: TablerLinearIcons.File,
     onclick() {
-      console.log(90)
+
     },
   }]
 

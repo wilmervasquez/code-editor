@@ -17,7 +17,7 @@
         load = true
       }
     } catch (error) {
-      
+
     }
   }
 
@@ -30,7 +30,7 @@
     js.unshift(`import * as ${d.replaceAll(/-([a-zA-Z0-9])/g, (_, $1) => $1.toUpperCase())}  from '${url}';`)
 
     HistorySnippet.updateCode(
-      HistorySnippet.selectKey, 
+      HistorySnippet.selectKey,
       HistorySnippet.__xml,
       HistorySnippet.__css,
       js.join('\n'),

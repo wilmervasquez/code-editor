@@ -1,34 +1,48 @@
 <script lang="ts">
+  import { deserialize } from "$app/forms";
   import { getStructHTML } from "$lib/util";
+  import type { ActionResult } from "@sveltejs/kit";
+  import type { ActionData, PageData } from "./$types";
 
   interface Snippet {
     xml: string
     css: string
-    js: string
+    script: string
   }
 
-  let snippets: Snippet[] = $state([]);
-
-  async function getSnippets() {
-    const res = await fetch('/api/snippets');
-    snippets = await res.json()
+  interface Props {
+    data: PageData,
+    form: ActionData
   }
 
-  getSnippets()
+  let { data }: Props = $props()
 
   async function deleteSnippet(id: string) {
+    console.log(123)
     const formData = new FormData()
     formData.append('id', id)
 
-    const response = await fetch("/api/snippets", {
-      method: "DELETE",
+    const response = await fetch("?/delete", {
+      method: "POST",
       body: formData,
+      headers: {
+		    'x-sveltekit-action': 'true'
+	    }
     });
-    getSnippets()
+
+    const result: ActionResult = deserialize(await response.text())
+
+    if (result.type === 'success') {
+      console.log('Se registro correctamente')
+    }
+
   }
+
+  console.log(data)
 </script>
+<button onclick={()=>deleteSnippet('12')}>video</button>
 <header class="flex items-center justify-between sticky top-0">
-  <h1 class="p-2 text-2xl font-bold">Snippets {snippets.length}</h1>
+  <h1 class="p-2 text-2xl font-bold">Snippets {data.snippets.length}</h1>
   <div class="flex px-4">
     <a href="/">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#cccccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.5 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M9 17h3m4 5l5-5m0 4.5V17h-4.5"/></svg>
@@ -36,7 +50,7 @@
   </div>
 </header>
 <div class="cont grid p-3 gap-3">
-  {#each snippets as {id, xml, css, js}}
+  {#each data.snippets as {id, xml, css, script, createdAt, updatedAt}}
     <article class="bg-neutral-800 rounded-lg overflow-hidden">
       <div class="flex items-center justify-between px-1">
         <div class="flex items-center gap-2 py-1">
@@ -45,7 +59,8 @@
           </div>
           <div class="">
             <div class="text-sm">Carlos</div>
-            <div class="text-xs">April 12, 2024</div>
+            <div class="text-xs">{createdAt.toString().slice(0,24)}</div>
+            <div class="text-xs">{updatedAt.toString().slice(0,24)}</div>
           </div>
         </div>
         <div class="flex">
@@ -61,7 +76,7 @@
           </button>
         </div>
       </div>
-      <iframe class="aspect-video w-full block" srcdoc={getStructHTML(xml,css,js)} frameborder="0" title="Hola"></iframe>
+      <iframe class="aspect-video w-full block" srcdoc={getStructHTML(xml ?? '',css ?? '', script ?? '')} frameborder="0" title="Hola"></iframe>
     </article>
   {/each}
 </div>

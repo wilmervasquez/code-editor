@@ -1,5 +1,8 @@
 import { SnippetModel } from "$lib/server/models/SnippetModel.js";
+import { PrismaClient } from "@prisma/client";
 import { json } from "@sveltejs/kit";
+
+const prisma = new PrismaClient()
 
 export async function GET() {
   let snippets
@@ -16,10 +19,18 @@ export async function POST({ request }) {
   const formData = await request.formData();
   const xml = formData.get("xml") as string;
   const css = formData.get("css") as string;
-  const js = formData.get("js") as string;
+  const script = formData.get("js") as string;
 
   try {
-    await new SnippetModel().insert({xml, css, js})
+    await prisma.snippet.create({data: {
+      title: '',
+      userId: 1,
+      snippetCategoryId: 1,
+      xml,
+      css,
+      script,
+    }});
+
     return new Response(null, {status: 200});
   } catch (error) {
     console.log(JSON.stringify(error))

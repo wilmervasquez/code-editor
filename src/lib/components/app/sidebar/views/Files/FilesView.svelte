@@ -22,7 +22,7 @@
       method: "POST",
       body: formData,
     });
-    console.log(response)
+
     if (response.ok) {
       statusUpload = 'load'
     } else {
