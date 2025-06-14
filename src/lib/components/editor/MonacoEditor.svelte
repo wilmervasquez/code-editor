@@ -1,10 +1,9 @@
 <script lang="ts">
 	import * as monaco from 'monaco-editor';
 
-
 	interface Props {
 		language?: string;
-		onchange: (value: string) => void
+		onchange: (value: string) => void;
 	}
 
 	let { language = "", onchange }: Props = $props();

@@ -55,7 +55,7 @@
         </svg>
         <input type="password" placeholder="Password" bind:value={password}>
       </label>
-      <button on:click={onSend} class="flex items-center justify-center gap-2 w-full font-serif bg-neutral-900 border border-neutral-700 rounded-lg p-1 pr-2 shadow-lg shadow-black">
+      <button on:click={onSend} class="flex items-center justify-center gap-2 w-full bg-neutral-900 border border-neutral-700 rounded-lg p-1 pr-2 shadow-lg shadow-black">
         {#if ver == 'verifiend'}
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g><rect width="2" height="5" x="11" y="1" fill="#b593f0" opacity=".14"/><rect width="2" height="5" x="11" y="1" fill="#b593f0" opacity=".29" transform="rotate(30 12 12)"/><rect width="2" height="5" x="11" y="1" fill="#b593f0" opacity=".43" transform="rotate(60 12 12)"/><rect width="2" height="5" x="11" y="1" fill="#b593f0" opacity=".57" transform="rotate(90 12 12)"/><rect width="2" height="5" x="11" y="1" fill="#b593f0" opacity=".71" transform="rotate(120 12 12)"/><rect width="2" height="5" x="11" y="1" fill="#b593f0" opacity=".86" transform="rotate(150 12 12)"/><rect width="2" height="5" x="11" y="1" fill="#b593f0" transform="rotate(180 12 12)"/><animateTransform attributeName="transform" calcMode="discrete" dur="0.75s" repeatCount="indefinite" type="rotate" values="0 12 12;30 12 12;60 12 12;90 12 12;120 12 12;150 12 12;180 12 12;210 12 12;240 12 12;270 12 12;300 12 12;330 12 12;360 12 12"/></g></svg>
           Verificando

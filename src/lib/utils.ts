@@ -76,4 +76,18 @@ const generateConsoleScript = ({ html, css }: {html: string, css: string}) => {
 
   return scrpt
 }
+
+export function hav(v:string) {
+  return `
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="module">${v}</script>
+</body>
+</html>`
+}
 export { htmlASbase64, getStructHTML, createObjectURLBlobStructHTML}

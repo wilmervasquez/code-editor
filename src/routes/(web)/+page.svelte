@@ -1,7 +1,7 @@
 <script lang="ts">
   import Editor from "$lib/components/editor/Editor.svelte";
   import Split from "$lib/components/Split.svelte";
-  import { createObjectURLBlobStructHTML } from "$lib/util";
+  import { createObjectURLBlobStructHTML } from "$lib/utils";
   import { onDestroy, onMount } from "svelte";
   import { HistorySnippet } from "$lib/components/app/sidebar/views/History/SnippetHistory";
 
@@ -53,28 +53,28 @@
 </script>
 <div class="view-editor grid h-full">
   <Split>
-  <Editor
+    <Editor
       slot="area-1"
       --image="url(https://www.abusaid.me/_next/static/media/html.017306fd.svg)"
       language="html"
       bind:this={editorHTML}
-      on:change={({detail}) => onChangeEditor({...snippet, xml: detail}) }
+      onchange={(detail) => onChangeEditor({...snippet, xml: detail}) }
     />
-  <Editor
+    <Editor
       slot="area-2"
       --image="url(https://www.abusaid.me/_next/static/media/javascript.b181c09e.svg)"
       language="javascript"
       bind:this={editorJS}
-      on:change={({detail})=> onChangeEditor({...snippet, js: detail}) }
+      onchange={(detail)=> onChangeEditor({...snippet, js: detail}) }
     />
-  <Editor
+    <Editor
       slot="area-3"
       --image="url(https://www.abusaid.me/_next/static/media/css.18a757c4.svg)"
       language="css"
       bind:this={editorCSS}
-      on:change={({detail})=> onChangeEditor({...snippet, css: detail}) }
+      onchange={(detail)=> onChangeEditor({...snippet, css: detail}) }
     />
-  <iframe slot="area-4" bind:this={iframe} class="w-full h-full bg-white" src={doc} frameborder="0" title=""></iframe>
+    <iframe slot="area-4" bind:this={iframe} class="w-full h-full bg-white" src={doc} frameborder="0" title=""></iframe>
   </Split>
 </div>
 <style>
@@ -83,4 +83,5 @@
     grid-template-rows: 1fr 1fr;
     height: 100vh;
   } */
+   
 </style>

@@ -1,4 +1,4 @@
-import { createObjectURLBlobStructHTML } from "$lib/util";
+import { createObjectURLBlobStructHTML } from "$lib/utils";
 
 interface Snippet {
   name:string,

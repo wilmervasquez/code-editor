@@ -1,6 +1,6 @@
 <script lang="ts">
   import { deserialize } from "$app/forms";
-  import { getStructHTML } from "$lib/util";
+  import { getStructHTML } from "$lib/utils";
   import type { ActionResult } from "@sveltejs/kit";
   import type { ActionData, PageData } from "./$types";
 

@@ -10,8 +10,10 @@
   * {
     outline: none;
 		background-color: transparent;
-		/* font-family: DM Sans; */
   }
+	html {
+		@apply font-sans;
+	}
   body {
     background-color: rgb(24, 24, 24);
   }

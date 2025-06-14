@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "$lib/components/editor/Editor.ts"
+  import "$lib/components/editor/editor"
   import ActivityBar from "$lib/components/app/sidebar/ActivityBar.svelte";
   import Files from "$lib/components/app/sidebar/views/Files/FilesView.svelte";
   import { HistorySnippet } from "$lib/components/app/sidebar/views/History/SnippetHistory";

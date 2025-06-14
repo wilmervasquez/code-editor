@@ -5,7 +5,8 @@ export default {
     extend: {
       fontFamily: {
         mono: ['Cascadia Code'],
-        serif: ['DM Sans', 'Lato']
+        serif: [],
+        sans: ['Geist', 'DM Sans', 'Lato'],
       }
     },
   },
