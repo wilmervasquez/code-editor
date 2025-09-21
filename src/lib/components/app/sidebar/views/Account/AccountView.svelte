@@ -1,6 +1,5 @@
 <script lang="ts">
   import TablerLinearIcons from "$lib/icons/TablerLinearIcons";
-  import { supabase } from "$lib/client/supabase/supabase";
   import BarTop from "../../BarTop.svelte";
 
   let email = $state('')

@@ -1,6 +1,15 @@
 <script lang="ts">
 	import Split from "split-grid";
+  import type { Snippet } from "svelte";
 
+  interface Props {
+    area1: Snippet
+    area2: Snippet
+    area3: Snippet
+    area4: Snippet
+  }
+  
+  const { area1, area2, area3, area4 }: Props = $props();
   function splitGrid(container: HTMLElement) {
     Split({
       columnGutters: [{
@@ -19,21 +28,21 @@
 <div class="editors grid scrollbar-none" use:splitGrid>
   <!-- Square -->
   <div class="grid bg-[#1e1e1e] relative overflow-hidden">
-    <slot name="area-1"/>
+    {@render area1()}
   </div>
   <div class="gutter-col gutter-col-1"></div>
   <!-- Square -->
   <div class="grid bg-[#1e1e1e] relative overflow-hidden">
-    <slot name="area-2"/>
+        {@render area2()}
   </div>
    <!-- Square -->
-   <div class="grid bg-[#1e1e1e] relative overflow-hidden">
-    <slot name="area-3"/>
+  <div class="grid bg-[#1e1e1e] relative overflow-hidden">
+    {@render area3()}
   </div>
   <div class="gutter-row gutter-row-1"></div>
   <!-- View -->
   <div class="overflow-y-hidden">
-    <slot name="area-4"/>
+    {@render area4()}
   </div>
 </div>
 <style>

@@ -1,80 +1,64 @@
 <script lang="ts">
+  import '$lib/components/editor/Editor'
   import Editor from "$lib/components/editor/Editor.svelte";
   import Split from "$lib/components/Split.svelte";
-  import { createObjectURLBlobStructHTML } from "$lib/utils";
-  import { onDestroy, onMount } from "svelte";
-  import { HistorySnippet } from "$lib/components/app/sidebar/views/History/SnippetHistory";
+  import { getSnnipetContext } from '$lib/components/app/sidebar/views/History/snippets.svelte';
+  import { onMount } from "svelte";
+
+  const snippet = getSnnipetContext()
 
   let iframe: HTMLIFrameElement;
   let editorHTML: Editor;
   let editorCSS: Editor;
   let editorJS: Editor;
 
-  let selectKey: string = $state(HistorySnippet.selectKey);
-  let doc: string = $state('');
-  let snippet = $state({xml: '', css: '', js: ''})
+  const selectedSnippet = $derived(snippet.selectedSnippet)
 
   const setValuesEditor = () => {
-    selectKey = HistorySnippet.selectKey
-
+  }
+  
+  $effect(() => {
     if (editorHTML && editorCSS && editorJS) {
-      const snp = HistorySnippet.data.get(selectKey)
-      if (snp == null) return
-
-      snippet = snp
-
-      editorHTML.setValue(snp.xml)
-      editorCSS.setValue(snp.css)
-      editorJS.setValue(snp.js)
+      if (!selectedSnippet) return
+  
+      editorHTML.setValue(selectedSnippet.xml)
+      editorCSS.setValue(selectedSnippet.css)
+      editorJS.setValue(selectedSnippet.js)
     }
-  }
 
-  onMount(()=>{
-    setValuesEditor()
+    console.log(123);
   })
-
-
-  const subscribeKey = HistorySnippet.subscribe(setValuesEditor)
-
-  onDestroy(()=>{
-    HistorySnippet.subscriptions.delete(subscribeKey)
-  })
-
-  function onChangeEditor(snp: { xml: string, css: string, js: string}) {
-    snippet = snp;
-    onChangeXML()
-  }
-
-  function onChangeXML() {
-    doc = createObjectURLBlobStructHTML(snippet.xml, snippet.css, snippet.js);
-    HistorySnippet.updateCode(selectKey, snippet.xml, snippet.css, snippet.js)
-  }
 
 </script>
 <div class="view-editor grid h-full">
   <Split>
-    <Editor
-      slot="area-1"
-      --image="url(https://www.abusaid.me/_next/static/media/html.017306fd.svg)"
-      language="html"
-      bind:this={editorHTML}
-      onchange={(detail) => onChangeEditor({...snippet, xml: detail}) }
-    />
-    <Editor
-      slot="area-2"
-      --image="url(https://www.abusaid.me/_next/static/media/javascript.b181c09e.svg)"
-      language="javascript"
-      bind:this={editorJS}
-      onchange={(detail)=> onChangeEditor({...snippet, js: detail}) }
-    />
-    <Editor
-      slot="area-3"
-      --image="url(https://www.abusaid.me/_next/static/media/css.18a757c4.svg)"
-      language="css"
-      bind:this={editorCSS}
-      onchange={(detail)=> onChangeEditor({...snippet, css: detail}) }
-    />
-    <iframe slot="area-4" bind:this={iframe} class="w-full h-full bg-white" src={doc} frameborder="0" title=""></iframe>
+    {#snippet area1()}
+      <Editor
+        --image="url(https://www.abusaid.me/_next/static/media/html.017306fd.svg)"
+        language="html"
+        bind:this={editorHTML}
+        onchange={(detail) => snippet.setXml(detail) }
+      />
+    {/snippet}
+    {#snippet area2()}
+      <Editor
+        --image="url(https://www.abusaid.me/_next/static/media/javascript.b181c09e.svg)"
+        language="javascript"
+        bind:this={editorJS}
+        onchange={(detail)=> snippet.setJS(detail) }
+      />
+    {/snippet}
+    {#snippet area3()}
+      <Editor
+        --image="url(https://www.abusaid.me/_next/static/media/css.18a757c4.svg)"
+        language="css"
+        bind:this={editorCSS}
+        onchange={(detail)=> snippet.setCss(detail) }
+      />
+    {/snippet}
+    {#snippet area4()}
+      <iframe bind:this={iframe} class="w-full h-full bg-white" src={snippet.doc} frameborder="0" title=""></iframe>
+    {/snippet}
   </Split>
 </div>
 <style>

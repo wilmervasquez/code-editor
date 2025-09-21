@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { Action } from "../../BarTop";
-  import { supabase } from "$lib/client/supabase/supabase";
   import TablerLinearIcons from "$lib/icons/TablerLinearIcons";
   import BarTop from "../../BarTop.svelte";
 
@@ -14,18 +13,18 @@
   let isLoading = $state(true);
   let snp = $state([]);
 
-  (async function(){
-    let { data: snippets, error } = await supabase.from('snippets').select('*')
+  // (async function(){
+  //   let { data: snippets, error } = await supabase.from('snippets').select('*')
 
-    if (error) {
+  //   if (error) {
 
-    } else {
-      isLoading = false
-    }
-    console.log(snippets)
+  //   } else {
+  //     isLoading = false
+  //   }
+  //   console.log(snippets)
 
-    snp = snippets
-  })();
+  //   snp = snippets
+  // })();
 </script>
 <div class="view">
   <BarTop title="CLOUD" {actions}/>

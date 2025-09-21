@@ -2,16 +2,16 @@
   import TablerLinearIcons from "$lib/icons/TablerLinearIcons";
   import type { Action } from "../../BarTop";
   import BarTop from "../../BarTop.svelte";
-  import { HistorySnippet } from "../History/SnippetHistory";
+  import { getSnnipetContext } from "../History/snippets.svelte";
 
   let statusUpload = $state('none');
 
+  const snippet = getSnnipetContext()
+
   async function uploadSnippet()  {
     const formData = new FormData()
-    const snp = HistorySnippet.data.get(HistorySnippet.selectKey)
-    if (snp == null) {
-      return
-    }
+    const snp = snippet.selectedSnippet
+    if (!snp) return
 
     formData.append('xml', snp.xml)
     formData.append('css', snp.css)

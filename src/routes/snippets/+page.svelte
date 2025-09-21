@@ -1,14 +1,8 @@
 <script lang="ts">
-  import { deserialize } from "$app/forms";
-  import { getStructHTML } from "$lib/utils";
   import type { ActionResult } from "@sveltejs/kit";
   import type { ActionData, PageData } from "./$types";
-
-  interface Snippet {
-    xml: string
-    css: string
-    script: string
-  }
+  import { deserialize } from "$app/forms";
+  import { getStructHTML } from "$lib/utils";
 
   interface Props {
     data: PageData,
@@ -18,7 +12,6 @@
   let { data }: Props = $props()
 
   async function deleteSnippet(id: string) {
-    console.log(123)
     const formData = new FormData()
     formData.append('id', id)
 
@@ -35,10 +28,7 @@
     if (result.type === 'success') {
       console.log('Se registro correctamente')
     }
-
   }
-
-  console.log(data)
 </script>
 <button onclick={()=>deleteSnippet('12')}>video</button>
 <header class="flex items-center justify-between sticky top-0">
@@ -50,7 +40,7 @@
   </div>
 </header>
 <div class="cont grid p-3 gap-3">
-  {#each data.snippets as {id, xml, css, script, createdAt, updatedAt}}
+  {#each [] as {id, xml, css, script, createdAt, updatedAt}}
     <article class="bg-neutral-800 rounded-lg overflow-hidden">
       <div class="flex items-center justify-between px-1">
         <div class="flex items-center gap-2 py-1">

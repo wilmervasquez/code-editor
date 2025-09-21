@@ -1,12 +1,12 @@
 <script lang="ts">
-  import "$lib/components/editor/editor"
+  import type { Component } from "svelte";
+  import '$lib/components/editor/Editor'
+  import type { Provider } from "$lib/components/app/sidebar/ActivityBar.d.ts";
+  import { setSnnipetContext } from "$lib/components/app/sidebar/views/History/snippets.svelte";
   import ActivityBar from "$lib/components/app/sidebar/ActivityBar.svelte";
   import Files from "$lib/components/app/sidebar/views/Files/FilesView.svelte";
-  import { HistorySnippet } from "$lib/components/app/sidebar/views/History/SnippetHistory";
   import Packages from "$lib/components/app/sidebar/views/Packages/PackagesView.svelte";
   import TablerIcons from "$lib/icons/TablerLinearIcons";
-  import type { Component } from "svelte";
-  import type { Provider } from "$lib/components/app/sidebar/ActivityBar.d.ts";
   import HistoryView from "$lib/components/app/sidebar/views/History/HistoryView.svelte";
   import SettingsView from "$lib/components/app/sidebar/views/Settings/SettingsView.svelte";
   import CloudView from "$lib/components/app/sidebar/views/Cloud/CloudView.svelte";
@@ -14,12 +14,13 @@
   import AccountView from "$lib/components/app/sidebar/views/Account/AccountView.svelte";
   import MenuView from "$lib/components/app/sidebar/views/Menu/MenuView.svelte";
 
-  HistorySnippet.load()
-
   function CProvider(icon: string, view: Component, position: 'TOP' | 'BOTTOM' = 'TOP'): Provider {
     return {icon, view, position}
   }
 
+  const snp = setSnnipetContext()
+
+  console.log(snp.snippets);
   const provider = [
     CProvider(TablerIcons.Menu_2, MenuView),
     CProvider(TablerIcons.File, Files),

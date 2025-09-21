@@ -1,23 +1,23 @@
 <script lang="ts">
 	import * as monaco from 'monaco-editor';
 
-
 	interface Props {
 		language?: string;
 		onchange: (value: string) => void
 	}
 
 	let { language = "", onchange }: Props = $props();
-	let ready = false;
 
+	let ready = false;
 	let editor:monaco.editor.IStandaloneCodeEditor;
+
 	function embedEditor(node: HTMLDivElement) {
 		editor = monaco.editor.create(node, {
 			language,
 			value: '',
 			padding: { top: 14 },
 			fontSize: 15,
-			fontFamily: 'Spline Sans Mono',
+			fontFamily: 'monospace',
 			theme: 'vs-dark',
 			tabSize: 2,
 			minimap:{ enabled: false},
@@ -42,6 +42,7 @@
 			editor.setValue(value);
 		}
 	}
+  
 	export function getValue() {
 		return ready ? editor.getValue() : ''
 	}
@@ -75,4 +76,3 @@
 		background-image: var(--image);
 	}
 </style>
-<!-- 52:10 -->

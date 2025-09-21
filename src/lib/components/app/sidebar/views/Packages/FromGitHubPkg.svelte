@@ -1,6 +1,5 @@
 <script lang="ts">
   import TablerLinearIcons from "$lib/icons/TablerLinearIcons";
-  import { HistorySnippet } from "../History/SnippetHistory";
 
   interface Props {
     fullName: string
@@ -24,19 +23,20 @@
   isExistPkg()
 
   function addPkg() {
-    const js = HistorySnippet.__js.split('\n')
-    const d = fullName.split('/').at(-1)
+    
+    // const js = HistorySnippet.__js.split('\n')
+    // const d = fullName.split('/').at(-1)
 
-    js.unshift(`import * as ${d.replaceAll(/-([a-zA-Z0-9])/g, (_, $1) => $1.toUpperCase())}  from '${url}';`)
+    // js.unshift(`import * as ${d.replaceAll(/-([a-zA-Z0-9])/g, (_, $1) => $1.toUpperCase())}  from '${url}';`)
 
-    HistorySnippet.updateCode(
-      HistorySnippet.selectKey,
-      HistorySnippet.__xml,
-      HistorySnippet.__css,
-      js.join('\n'),
-    )
+    // HistorySnippet.updateCode(
+    //   HistorySnippet.selectKey,
+    //   HistorySnippet.__xml,
+    //   HistorySnippet.__css,
+    //   js.join('\n'),
+    // )
 
-    HistorySnippet.selectSnippet(HistorySnippet.selectKey)
+    // HistorySnippet.selectSnippet(HistorySnippet.selectKey)
   }
 </script>
 <article class:hidden={!load}>

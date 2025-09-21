@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "$lib/components/editor/editor"
+  import "$lib/components/editor/Editor"
   import Editor from "$lib/components/editor/Editor.svelte";
   import { hav } from "$lib/utils";
   let javascript = $state('');
