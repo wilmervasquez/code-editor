@@ -54,7 +54,7 @@
 
   .gutter-col,.gutter-row{
     background-repeat: no-repeat;
-    background-color: hsl(218, 14%, 14%);
+    background-color: hsl(0, 0%, 15%);
   }
 
   .gutter-col {
@@ -64,7 +64,7 @@
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==);
   }
   .gutter-col:hover,.gutter-row:hover{
-    background-color: hsl(218, 14%, 14%);
+    background-color: hsl(0, 0%, 14%);
   }
 
   .gutter-col-1 {
